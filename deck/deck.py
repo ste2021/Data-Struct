@@ -1,3 +1,5 @@
+# Deque - Estrutura
+# ------------------------------------------------------
 # construtor node
 class Node:
     def __init__(self, data):
@@ -17,6 +19,8 @@ class Deck:
 
     def empty(self):
         return self._size == 0
+# -------------------------------------------------------
+# Inserir Elementos no Deque
 
     def push_left(self, elem):
         node = Node(elem)
@@ -45,6 +49,8 @@ class Deck:
             self.right = node
 
         self._size += 1
+# -------------------------------------------------------
+# Exibe Elementos no Deque
 
     def top_left(self):
         if self.left:
@@ -55,6 +61,26 @@ class Deck:
         if self.right:
             return self.right.data
         return "Deque vazio"
+# -------------------------------------------------------
+# Exclui Elementos no Deque
+
+    def pop_left(self):
+        if self.empty():
+            return "Deque Vazio"
+        elem = self.left.data
+        self.left = self.left.next
+        self.left.previous = None
+        self._size = 1
+        return elem
+
+    def pop_right(self):
+        if self.empty():
+            return "Deque Vazio"
+        elem = self.right.data
+        self.right = self.right.previous
+        self.right.next = None
+        self._size = 1
+        return elem
 
     def __repr__(self):
         r = ''
